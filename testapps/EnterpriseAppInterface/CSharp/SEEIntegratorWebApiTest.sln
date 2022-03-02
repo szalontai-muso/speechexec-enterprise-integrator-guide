@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileAPITest", "MobileAPITest\MobileAPITest.csproj", "{C78B1A68-876B-4239-A5C9-7B768E27E5EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterDataAPITest", "MasterDataAPITest\MasterDataAPITest.csproj", "{6960A44A-B648-465E-A8BD-093BD87BFA1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C78B1A68-876B-4239-A5C9-7B768E27E5EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C78B1A68-876B-4239-A5C9-7B768E27E5EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C78B1A68-876B-4239-A5C9-7B768E27E5EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C78B1A68-876B-4239-A5C9-7B768E27E5EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6960A44A-B648-465E-A8BD-093BD87BFA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6960A44A-B648-465E-A8BD-093BD87BFA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6960A44A-B648-465E-A8BD-093BD87BFA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6960A44A-B648-465E-A8BD-093BD87BFA1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {627AFC1E-0B2F-4A76-A7FD-DDA96BE83FCA}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mads.multisoft.hu/se
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MobileAPITest\\MobileAPITest.csproj
+		SccProjectName1 = MobileAPITest
+		SccLocalPath1 = MobileAPITest
+		SccProjectUniqueName2 = MasterDataAPITest\\MasterDataAPITest.csproj
+		SccProjectName2 = MasterDataAPITest
+		SccLocalPath2 = MasterDataAPITest
+	EndGlobalSection
+EndGlobal
