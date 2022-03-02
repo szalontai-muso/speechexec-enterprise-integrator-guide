@@ -7,3 +7,7 @@
     <br>
     <br>
 </p>
+List of test applications:
+
+- MasterDataAPI test
+- MobileAPI test
