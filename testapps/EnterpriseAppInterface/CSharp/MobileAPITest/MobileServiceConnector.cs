@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
@@ -17,14 +18,13 @@ internal class MobileServiceConnector
     private static string SEEAppInterfaceServiceUrl = "http://localhost/";
 
     private static string TestDictationFilePath = @"c:\Users\joco\Documents\speechexec\a_finish\adam0004.wav";
-    private static string TestDictationID = Guid.NewGuid().ToString();
+    private static string TestDictationID001 = Guid.NewGuid().ToString();
+    private static string TestDictationID002 = Guid.NewGuid().ToString();
 
-    private static HttpClient _AppInterfaceHttpClient;
+    private static HttpClient _AppInterfaceHttpClient = new HttpClient();
 
     public MobileServiceConnector()
     {
-        _AppInterfaceHttpClient = new HttpClient();
-
         Console.WriteLine("Requesting OAuth token...");
         var tokenQueryTask = QueryOAuthTokenInTask();
         tokenQueryTask.Wait();
@@ -51,7 +51,7 @@ internal class MobileServiceConnector
             { streamContent, "see_dictation_audio_file", Path.GetFileName(TestDictationFilePath) },
 
             // payload
-            { new StringContent(TestDictationID), "DictationId" },
+            { new StringContent(TestDictationID001), "DictationId" },
             { new StringContent("2"), "Status" },
             { new StringContent("0"), "Priority" },
             { new StringContent("Memo"), "Worktype" },
@@ -74,13 +74,13 @@ internal class MobileServiceConnector
         return response.StatusCode;
     }
 
-    public async Task<HttpStatusCode> QueryDictationInTask()
+    public async Task<HttpStatusCode> QuerySingleDictationInTask()
     {
         // Attach the GET /app/dictations REST endpoint to the root url, including the dictation ID we're looking for
-        var masterDataPostEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/dictations/{TestDictationID}");
+        var masterDataGetEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/dictations/{TestDictationID001}");
 
         // Call the GET /app/dictations endpoint
-        var response = await _AppInterfaceHttpClient.GetAsync(masterDataPostEndPointUri);
+        var response = await _AppInterfaceHttpClient.GetAsync(masterDataGetEndPointUri);
         response.EnsureSuccessStatusCode();
 
         // Deserialize json response
@@ -90,13 +90,39 @@ internal class MobileServiceConnector
             {
                 var result = await streamReader.ReadToEndAsync();
                 var dict = JsonSerializer.Deserialize<GetDictationsResponse>(result);
+                // the requested dictation metadata is found in dict.data[0].files[0] object
             }
         }
    
         return response.StatusCode;
     }
 
-    private async Task<string> QueryOAuthTokenInTask()
+    public async Task<HttpStatusCode> QuerySetOfDictationsInTask()
+    {
+        // Attach the POST /app/getdictationinfolist REST endpoint to the root url
+        var masterDataPostEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/getdictationinfolist");
+        // Create an 'InsertMasterDataRequest' json request object
+        var request = CreateDictationInfoListRequest();
+
+        // Call the GET /app/dictations endpoint
+        var response = await _AppInterfaceHttpClient.PostAsJsonAsync(masterDataPostEndPointUri, request);
+        response.EnsureSuccessStatusCode();
+
+        // Deserialize json response
+        using (var responseStream = await response.Content.ReadAsStreamAsync())
+        {
+            using (StreamReader streamReader = new StreamReader(responseStream, Encoding.UTF8))
+            {
+                var result = await streamReader.ReadToEndAsync();
+                var dict = JsonSerializer.Deserialize<GetDictationsResponse>(result);
+                // the requested dictation metadatas are found in dict.data[0].files array
+            }
+        }
+
+        return response.StatusCode;
+    }
+
+    private async Task<string?> QueryOAuthTokenInTask()
     {
         // Attach the POST /app/token REST endpoint to the root url
         var queryTokenPostEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), "/SEEAppInterface/app/token");
@@ -122,5 +148,14 @@ internal class MobileServiceConnector
                 return tokenResponse?.access_token;
             }
         }
+    }
+
+    private static GetDictationInfoListRequest CreateDictationInfoListRequest()
+    {
+        return new GetDictationInfoListRequest
+        {
+            CRI = Guid.NewGuid(),
+            dictationIds = new[] { TestDictationID001, TestDictationID002 },
+        };
     }
 }

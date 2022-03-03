@@ -2,20 +2,20 @@
 
 internal class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         var mobileServiceConnector = new MobileServiceConnector();
 
         Console.WriteLine("Uploading new dictation...");
-        var uploadDictationTask = mobileServiceConnector.UploadNewDictationInTask();
-        uploadDictationTask.Wait();
-        var statusCode = uploadDictationTask.Result;
+        var statusCode = await mobileServiceConnector.UploadNewDictationInTask();
         Console.WriteLine($"Done. Status code: {(int)statusCode} ({statusCode})");
 
-        Console.WriteLine("Querying dictation...");
-        var queryDictationTask = mobileServiceConnector.QueryDictationInTask();
-        queryDictationTask.Wait();
-        statusCode = queryDictationTask.Result;
+        Console.WriteLine("Querying a single dictation...");
+        statusCode = await mobileServiceConnector.QuerySingleDictationInTask();
+        Console.WriteLine($"Done. Status code: {(int)statusCode} ({statusCode})");
+
+        Console.WriteLine("Querying a set of dictations...");
+        statusCode = await mobileServiceConnector.QuerySetOfDictationsInTask();
         Console.WriteLine($"Done. Status code: {(int)statusCode} ({statusCode})");
     }
 }
