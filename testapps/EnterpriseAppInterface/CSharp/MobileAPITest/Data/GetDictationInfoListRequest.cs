@@ -9,5 +9,5 @@ namespace MobileAPITest.Data;
 internal class GetDictationInfoListRequest
 {
 	public Guid CRI { get; set; }
-	public string[] dictationIds { get; set; }
+	public string[]? dictationIds { get; set; }
 }

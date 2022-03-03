@@ -21,12 +21,10 @@ internal class MobileServiceConnector
     private static string TestDictationID001 = Guid.NewGuid().ToString();
     private static string TestDictationID002 = Guid.NewGuid().ToString();
 
-    private static HttpClient _AppInterfaceHttpClient;
+    private static HttpClient _AppInterfaceHttpClient = new HttpClient();
 
     public MobileServiceConnector()
     {
-        _AppInterfaceHttpClient = new HttpClient();
-
         Console.WriteLine("Requesting OAuth token...");
         var tokenQueryTask = QueryOAuthTokenInTask();
         tokenQueryTask.Wait();
@@ -124,7 +122,7 @@ internal class MobileServiceConnector
         return response.StatusCode;
     }
 
-    private async Task<string> QueryOAuthTokenInTask()
+    private async Task<string?> QueryOAuthTokenInTask()
     {
         // Attach the POST /app/token REST endpoint to the root url
         var queryTokenPostEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), "/SEEAppInterface/app/token");

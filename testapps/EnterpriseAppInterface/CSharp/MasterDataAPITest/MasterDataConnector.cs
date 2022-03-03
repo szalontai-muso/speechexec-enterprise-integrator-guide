@@ -16,18 +16,14 @@ internal class MasterDataConnector
 
     private static string MasterDataRecordID = "SPS_test_ID";
 
-    private static HttpClient _AppInterfaceHttpClient;
-    private static HttpClient _ConfigServiceHttpClient;
+    private static HttpClient _AppInterfaceHttpClient = new HttpClient();
+    // Create an http client handler where we specify to use Windows Authentication
+    private static HttpClient _ConfigServiceHttpClient = new HttpClient(new HttpClientHandler { UseDefaultCredentials = true });
 
     public MasterDataConnector()
     {
-        _AppInterfaceHttpClient = new HttpClient();
         // Set the API key in the request header for authentication
         _AppInterfaceHttpClient.DefaultRequestHeaders.Add("x-sps-api-key", "AdminApiKey_TestGroup_678e1f10-53b0-4b8d-af36-7067b52466ea");
-
-        // Create an http client handler where we specify to use Windows Authentication
-        var httpClientHandler = new HttpClientHandler { UseDefaultCredentials = true };
-        _ConfigServiceHttpClient = new HttpClient(httpClientHandler);
     }
 
     // Insert a new, hard-defined MasterData record to the SEEMASTERDATA SQL DB
@@ -60,7 +56,7 @@ internal class MasterDataConnector
     }
 
     // Query MasterData record by ID from the SEEMASTERDATA SQL DB
-    public async Task<QueryMasterDataResponse> QueryMasterDataRecordInTask()
+    public async Task<QueryMasterDataResponse?> QueryMasterDataRecordInTask()
     {
         // Attach the GET /masterdata/dataitems REST endpoint to the root url, including the MasterData record's ID we're looking for
         var masterDataPostEndPointUri = new Uri(new Uri(SEEConfigServiceUrl), $"/SEEConfigServiceForIIS/masterdata/dataitems/{MasterDataRecordID}");

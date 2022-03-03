@@ -16,15 +16,15 @@ public enum MasterDataQueryStatus
 public class QueryMasterDataResponse
 {
     public MasterDataQueryStatus Status { get; set; }
-    public string AdditionalInformation { get; set; }
-    public MasterDataRecord Data { get; set; }
-    public string IncidentNumber { get; set; }
+    public string? AdditionalInformation { get; set; }
+    public MasterDataRecord? Data { get; set; }
+    public string? IncidentNumber { get; set; }
 
     public QueryMasterDataResponse()
     {
     }
 
-    public QueryMasterDataResponse(MasterDataQueryStatus status, MasterDataRecord data = null, string additionalInfo = "")
+    public QueryMasterDataResponse(MasterDataQueryStatus status, MasterDataRecord? data = null, string additionalInfo = "")
     {
         Status = status;
         Data = data;
@@ -35,16 +35,16 @@ public class QueryMasterDataResponse
 
 public class MasterDataRecord
 {
-    public string ID { get; set; }
-    public string Label01 { get; set; }
-    public string Label02 { get; set; }
-    public string Label03 { get; set; }
-    public string Label04 { get; set; }
-    public string Label05 { get; set; }
-    public string Label06 { get; set; }
-    public string Label07 { get; set; }
-    public string Label08 { get; set; }
-    public string Label09 { get; set; }
+    public string? ID { get; set; }
+    public string? Label01 { get; set; }
+    public string? Label02 { get; set; }
+    public string? Label03 { get; set; }
+    public string? Label04 { get; set; }
+    public string? Label05 { get; set; }
+    public string? Label06 { get; set; }
+    public string? Label07 { get; set; }
+    public string? Label08 { get; set; }
+    public string? Label09 { get; set; }
     public int? Int01 { get; set; }
     public int? Int02 { get; set; }
     public int? Int03 { get; set; }
