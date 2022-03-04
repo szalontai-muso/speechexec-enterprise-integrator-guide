@@ -77,11 +77,10 @@ internal class MobileServiceConnector
     public async Task<HttpStatusCode> QuerySingleDictationInTask()
     {
         // Attach the GET /app/dictations REST endpoint to the root url, including the dictation ID we're looking for
-        var masterDataGetEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/dictations/{TestDictationID001}");
+        var queryDictationGetEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/dictations/{TestDictationID001}");
 
         // Call the GET /app/dictations endpoint
-        var response = await _AppInterfaceHttpClient.GetAsync(masterDataGetEndPointUri);
-        response.EnsureSuccessStatusCode();
+        var response = await _AppInterfaceHttpClient.GetAsync(queryDictationGetEndPointUri);
 
         // Deserialize json response
         using (var responseStream = await response.Content.ReadAsStreamAsync())
@@ -93,20 +92,19 @@ internal class MobileServiceConnector
                 // the requested dictation metadata is found in dict.data[0].files[0] object
             }
         }
-   
+
         return response.StatusCode;
     }
 
     public async Task<HttpStatusCode> QuerySetOfDictationsInTask()
     {
         // Attach the POST /app/getdictationinfolist REST endpoint to the root url
-        var masterDataPostEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/getdictationinfolist");
+        var queryDictationPostEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/getdictationinfolist");
         // Create an 'InsertMasterDataRequest' json request object
         var request = CreateDictationInfoListRequest();
 
         // Call the GET /app/dictations endpoint
-        var response = await _AppInterfaceHttpClient.PostAsJsonAsync(masterDataPostEndPointUri, request);
-        response.EnsureSuccessStatusCode();
+        var response = await _AppInterfaceHttpClient.PostAsJsonAsync(queryDictationPostEndPointUri, request);
 
         // Deserialize json response
         using (var responseStream = await response.Content.ReadAsStreamAsync())
@@ -116,6 +114,49 @@ internal class MobileServiceConnector
                 var result = await streamReader.ReadToEndAsync();
                 var dict = JsonSerializer.Deserialize<GetDictationsResponse>(result);
                 // the requested dictation metadatas are found in dict.data[0].files array
+            }
+        }
+
+        return response.StatusCode;
+    }
+
+    public async Task<HttpStatusCode> DownloadAttachmentInTask()
+    {
+        // Attach the GET /app/dictations/{DictationID}/attachment/download REST endpoint to the root url, including the dictation ID we're looking for
+        var downloadDictationGetEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/dictations/{TestDictationID001}/attachment/download");
+
+        // Call the GET /app/dictations endpoint
+        var response = await _AppInterfaceHttpClient.GetAsync(downloadDictationGetEndPointUri);
+
+        // Read result stream content
+        using (var responseStream = await response.Content.ReadAsStreamAsync())
+        {
+            using (StreamReader streamReader = new StreamReader(responseStream, Encoding.UTF8))
+            {
+                var result = await streamReader.ReadToEndAsync();
+                // the result contains the attachment's file content
+            }
+        }
+
+        return response.StatusCode;
+    }
+
+    public async Task<HttpStatusCode> QueryUserSettingsInTask()
+    {
+        // Attach the GET /app/usersettings REST endpoint to the root url
+        var queryUserSettingsGetEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/usersettings");
+
+        // Call the GET /app/usersettings endpoint
+        var response = await _AppInterfaceHttpClient.GetAsync(queryUserSettingsGetEndPointUri);
+
+        // Deserialize json response
+        using (var responseStream = await response.Content.ReadAsStreamAsync())
+        {
+            using (StreamReader streamReader = new StreamReader(responseStream, Encoding.UTF8))
+            {
+                var result = await streamReader.ReadToEndAsync();
+                var userSettings = JsonSerializer.Deserialize<UserSettingsResponse>(result);
+                // the requested user settings is found in the userSettings JSON object
             }
         }
 
@@ -136,7 +177,6 @@ internal class MobileServiceConnector
 
         // Call the POST /app/token endpoint with the url-encoded form data
         var response = await _AppInterfaceHttpClient.PostAsync(queryTokenPostEndPointUri, content);
-        response.EnsureSuccessStatusCode();
 
         // Deserialize json response to return the OATH token
         using (var responseStream = await response.Content.ReadAsStreamAsync())
