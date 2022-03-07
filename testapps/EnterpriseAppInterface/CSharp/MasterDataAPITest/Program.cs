@@ -1,19 +1,17 @@
-﻿namespace SEEIntegratorWebApiTest;
+﻿namespace MasterDataAPITest;
 
 internal class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         var masterDataConnector = new MasterDataConnector();
 
         Console.WriteLine("Inserting new MasterData record...");
-        masterDataConnector.InsertNewMasterDataRecordInTask().Wait();
+        await masterDataConnector.InsertNewMasterDataRecordInTask();
         Console.WriteLine("Done.");
 
         Console.WriteLine("Querying MasterData record...");
-        var queryTask = masterDataConnector.QueryMasterDataRecordInTask();
-        queryTask.Wait();
-        var result = queryTask.Result;
+        var result = await masterDataConnector.QueryMasterDataRecordInTask();
         Console.WriteLine("Done.");
     }
 }

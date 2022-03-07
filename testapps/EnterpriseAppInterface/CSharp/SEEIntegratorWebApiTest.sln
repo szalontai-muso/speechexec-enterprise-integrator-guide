@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileAPITest", "MobileAPIT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MasterDataAPITest", "MasterDataAPITest\MasterDataAPITest.csproj", "{6960A44A-B648-465E-A8BD-093BD87BFA1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMSAPITest", "DMSAPITest\DMSAPITest.csproj", "{B02EC81C-B9AF-42B8-BE3E-1F7D84267EC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{EC5D4159-3F92-416F-87F7-7CB99814D361}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,23 +25,19 @@ Global
 		{6960A44A-B648-465E-A8BD-093BD87BFA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6960A44A-B648-465E-A8BD-093BD87BFA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6960A44A-B648-465E-A8BD-093BD87BFA1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B02EC81C-B9AF-42B8-BE3E-1F7D84267EC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B02EC81C-B9AF-42B8-BE3E-1F7D84267EC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B02EC81C-B9AF-42B8-BE3E-1F7D84267EC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B02EC81C-B9AF-42B8-BE3E-1F7D84267EC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC5D4159-3F92-416F-87F7-7CB99814D361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC5D4159-3F92-416F-87F7-7CB99814D361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC5D4159-3F92-416F-87F7-7CB99814D361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC5D4159-3F92-416F-87F7-7CB99814D361}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {627AFC1E-0B2F-4A76-A7FD-DDA96BE83FCA}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://mads.multisoft.hu/se
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = MobileAPITest\\MobileAPITest.csproj
-		SccProjectName1 = MobileAPITest
-		SccLocalPath1 = MobileAPITest
-		SccProjectUniqueName2 = MasterDataAPITest\\MasterDataAPITest.csproj
-		SccProjectName2 = MasterDataAPITest
-		SccLocalPath2 = MasterDataAPITest
 	EndGlobalSection
 EndGlobal
