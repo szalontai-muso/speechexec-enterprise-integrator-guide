@@ -1,37 +1,21 @@
-## Welcome to GitHub Pages
+---
+title: Enterprise App Interface integrations
+has_children: true
+nav_order: 10
+---
+# Enterprise App Interface integrations
 
-You can use the [editor on GitHub](https://github.com/speechprocessing/speechexec-enterprise-integrator-guide/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+## What is Enterprise App Interface?
+Enterprise App Interface is a web service application hosted in Internet Information Services for Windows (IIS). This product was introduced with SpeechExec 8.0 in 2022.
+The main goal of Enterprise App Interface is to provide various programmatic endpoints for integrators, so they can relatively easily create integrations between the SpeechExec Enterprise ecosystem and other existing, business-specific systems.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+## Integration endpoints
+Enterprise App Interface offers multiple integration end-point groups. These endpoints are REST services grouped into the following main areas:
+- /masterdata endpoints: help integrations with Hospital Information Systems
+- /dms endpoints: help integrations with Document Management Systems
+- /app endpoints: offer possibilites to access the on-premise SpeechExec Enterprise dictations from mobile devices via authenticated calls
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/speechprocessing/speechexec-enterprise-integrator-guide/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Test applications
+Test applications demonstrating the main use-cases and technical possibilites can be found [here](/testapps/EnterpriseAppInterface).
