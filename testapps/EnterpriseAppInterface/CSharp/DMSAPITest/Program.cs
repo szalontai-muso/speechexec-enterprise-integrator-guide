@@ -23,5 +23,9 @@ internal class Program
         Console.WriteLine($"Querying all dictations of all users...");
         statusCode = await dmsConnector.QueryDictationsForAllUsersInTask();
         Console.WriteLine($"Done. Status code: {(int)statusCode} ({statusCode})");
+
+        Console.WriteLine($"Downloading attachment of dictation for user '{user}'...");
+        statusCode = await dmsConnector.DownloadAttachmentInTask(user);
+        Console.WriteLine($"Done. Status code: {(int)statusCode} ({statusCode})");
     }
 }

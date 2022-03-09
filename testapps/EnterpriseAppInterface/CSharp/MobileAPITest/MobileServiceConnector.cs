@@ -17,16 +17,19 @@ internal class MobileServiceConnector
     // Url of the SpeechExec Enterprise App Interface service
     private static string SEEAppInterfaceServiceUrl = "http://localhost/";
 
-    private static string TestDictationFilePath = @"c:\Users\joco\Documents\speechexec\a_finish\adam0004.wav";
-    private static string TestDictationID001 = Guid.NewGuid().ToString();
-    private static string TestDictationID002 = Guid.NewGuid().ToString();
+    // Important: use your own dictation's file path here!
+    private static string TestDictationFilePath = @"d:\testdata\dict001.wav";
+
+    private static string TestDictationIDToUpload = Guid.NewGuid().ToString();
+    // Use an existing dictation's ID here which has a document attached
+    private static string TestDictationIDWithAttachment = "<enter_ID_of_dictation>";
 
     private static HttpClient _AppInterfaceHttpClient = new HttpClient();
 
-    public MobileServiceConnector()
+    public MobileServiceConnector(string? userName, string? password)
     {
         Console.WriteLine("Requesting OAuth token...");
-        var tokenQueryTask = QueryOAuthTokenInTask();
+        var tokenQueryTask = QueryOAuthTokenInTask(userName, password);
         tokenQueryTask.Wait();
         var oauthToken = tokenQueryTask.Result;
         Console.WriteLine("Done.");
@@ -37,7 +40,7 @@ internal class MobileServiceConnector
 
     public async Task<HttpStatusCode> UploadNewDictationInTask()
     {
-        // Attach the POST /app/dictations REST endpoint to the root url
+        // Concatenate the POST /app/dictations REST endpoint to the root url
         var uploadDictationPostEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), "/SEEAppInterface/app/dictations");
 
         // Read a test dictation file contents into memory
@@ -51,7 +54,7 @@ internal class MobileServiceConnector
             { streamContent, "see_dictation_audio_file", Path.GetFileName(TestDictationFilePath) },
 
             // payload
-            { new StringContent(TestDictationID001), "DictationId" },
+            { new StringContent(TestDictationIDToUpload), "DictationId" },
             { new StringContent("2"), "Status" },
             { new StringContent("0"), "Priority" },
             { new StringContent("Memo"), "Worktype" },
@@ -76,8 +79,8 @@ internal class MobileServiceConnector
 
     public async Task<HttpStatusCode> QuerySingleDictationInTask()
     {
-        // Attach the GET /app/dictations REST endpoint to the root url, including the dictation ID we're looking for
-        var queryDictationGetEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/dictations/{TestDictationID001}");
+        // Concatenate the GET /app/dictations REST endpoint to the root url, including the dictation ID we're looking for
+        var queryDictationGetEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/dictations/{TestDictationIDToUpload}");
 
         // Call the GET /app/dictations endpoint
         var response = await _AppInterfaceHttpClient.GetAsync(queryDictationGetEndPointUri);
@@ -98,7 +101,7 @@ internal class MobileServiceConnector
 
     public async Task<HttpStatusCode> QuerySetOfDictationsInTask()
     {
-        // Attach the POST /app/getdictationinfolist REST endpoint to the root url
+        // Concatenate the POST /app/getdictationinfolist REST endpoint to the root url
         var queryDictationPostEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/getdictationinfolist");
         // Create an 'InsertMasterDataRequest' json request object
         var request = CreateDictationInfoListRequest();
@@ -122,8 +125,8 @@ internal class MobileServiceConnector
 
     public async Task<HttpStatusCode> DownloadAttachmentInTask()
     {
-        // Attach the GET /app/dictations/{DictationID}/attachment/download REST endpoint to the root url, including the dictation ID we're looking for
-        var downloadDictationGetEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/dictations/{TestDictationID001}/attachment/download");
+        // Concatenate the GET /app/dictations/{DictationID}/attachment/download REST endpoint to the root url, including the dictation ID we're looking for
+        var downloadDictationGetEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/dictations/{TestDictationIDWithAttachment}/attachment/download");
 
         // Call the GET /app/dictations endpoint
         var response = await _AppInterfaceHttpClient.GetAsync(downloadDictationGetEndPointUri);
@@ -143,7 +146,7 @@ internal class MobileServiceConnector
 
     public async Task<HttpStatusCode> QueryUserSettingsInTask()
     {
-        // Attach the GET /app/usersettings REST endpoint to the root url
+        // Concatenate the GET /app/usersettings REST endpoint to the root url
         var queryUserSettingsGetEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), $"/SEEAppInterface/app/usersettings");
 
         // Call the GET /app/usersettings endpoint
@@ -163,16 +166,16 @@ internal class MobileServiceConnector
         return response.StatusCode;
     }
 
-    private async Task<string?> QueryOAuthTokenInTask()
+    private async Task<string?> QueryOAuthTokenInTask(string? userName, string? password)
     {
-        // Attach the POST /app/token REST endpoint to the root url
+        // Concatenate the POST /app/token REST endpoint to the root url
         var queryTokenPostEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), "/SEEAppInterface/app/token");
 
         // Create an url-encoded form request object
-        var contentParams = new Dictionary<string, string>();
+        var contentParams = new Dictionary<string, string?>();
         contentParams.Add("grant_type", "password");
-        contentParams.Add("username", "seagile1");
-        contentParams.Add("password", "JUzer12");
+        contentParams.Add("username", userName);
+        contentParams.Add("password", password);
         var content = new FormUrlEncodedContent(contentParams);
 
         // Call the POST /app/token endpoint with the url-encoded form data
@@ -195,7 +198,7 @@ internal class MobileServiceConnector
         return new GetDictationInfoListRequest
         {
             CRI = Guid.NewGuid(),
-            dictationIds = new[] { TestDictationID001, TestDictationID002 },
+            dictationIds = new[] { TestDictationIDToUpload, TestDictationIDWithAttachment },
         };
     }
 }

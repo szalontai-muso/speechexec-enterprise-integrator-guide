@@ -23,13 +23,14 @@ internal class MasterDataConnector
     public MasterDataConnector()
     {
         // Set the API key in the request header for authentication
+        // Important: use your own API key as the 2nd parameter!
         _AppInterfaceHttpClient.DefaultRequestHeaders.Add("x-sps-api-key", "AdminApiKey_TestGroup_678e1f10-53b0-4b8d-af36-7067b52466ea");
     }
 
     // Insert a new, hard-defined MasterData record to the SEEMASTERDATA SQL DB
     public async Task InsertNewMasterDataRecordInTask()
     {
-        // Attach the POST /masterdata/dataitems REST endpoint to the root url
+        // Concatenate the POST /masterdata/dataitems REST endpoint to the root url
         var masterDataPostEndPointUri = new Uri(new Uri(SEEAppInterfaceServiceUrl), "/SEEAppInterface/masterdata/dataitems");
         // Create an 'InsertMasterDataRequest' json request object
         var request = CreateTestMasterDataRecord();
@@ -58,7 +59,7 @@ internal class MasterDataConnector
     // Query MasterData record by ID from the SEEMASTERDATA SQL DB
     public async Task<QueryMasterDataResponse?> QueryMasterDataRecordInTask()
     {
-        // Attach the GET /masterdata/dataitems REST endpoint to the root url, including the MasterData record's ID we're looking for
+        // Concatenate the GET /masterdata/dataitems REST endpoint to the root url, including the MasterData record's ID we're looking for
         var masterDataPostEndPointUri = new Uri(new Uri(SEEConfigServiceUrl), $"/SEEConfigServiceForIIS/masterdata/dataitems/{MasterDataRecordID}");
 
         // Call the GET /masterdata/dataitems endpoint

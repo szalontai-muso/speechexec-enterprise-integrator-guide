@@ -6,7 +6,12 @@ internal class Program
 {
     static async Task Main(string[] args)
     {
-        var mobileServiceConnector = new MobileServiceConnector();
+        Console.WriteLine("Enter username:");
+        var userName = Console.ReadLine();
+        Console.WriteLine("Enter password:");
+        var password = Console.ReadLine();
+
+        var mobileServiceConnector = new MobileServiceConnector(userName, password);
         var statusCode = HttpStatusCode.InternalServerError;
 
         Console.WriteLine("Uploading new dictation...");
