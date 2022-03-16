@@ -1,0 +1,1469 @@
+{
+	"info": {
+		"_postman_id": "d01d89d6-1f62-4497-b882-351f6f7ed8bc",
+		"name": "Enterprise App Interface service API v8.0.4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/app endpoints",
+			"item": [
+				{
+					"name": "/app/token",
+					"item": [
+						{
+							"name": "Req. new access token via login",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "{{APP_USERNAME}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{APP_PASSWORD}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/token",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Req. new access token via login, random Authorize token",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "WhateverTokenComingFromAzureAppProxy",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "{{APP_USERNAME}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{APP_PASSWORD}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/token",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "/app endpoints using Authorize header",
+					"item": [
+						{
+							"name": "Upload dictation (generic)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "see_dictation_audio_file",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "DictationId",
+											"value": "{{$guid}}",
+											"type": "text"
+										},
+										{
+											"key": "Status",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "Priority",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "Worktype",
+											"value": "Memo",
+											"type": "text"
+										},
+										{
+											"key": "CreationDateTime",
+											"value": "2021-09-24T13:50:40.000",
+											"type": "text"
+										},
+										{
+											"key": "Title",
+											"value": "Test dictation",
+											"type": "text"
+										},
+										{
+											"key": "Category",
+											"value": "test_cat",
+											"type": "text"
+										},
+										{
+											"key": "Comments",
+											"value": "test_comm",
+											"type": "text"
+										},
+										{
+											"key": "Department",
+											"value": "test_dep",
+											"type": "text"
+										},
+										{
+											"key": "Keyword",
+											"value": "test_kw",
+											"type": "text"
+										},
+										{
+											"key": "DPMBarcode",
+											"value": "test_bc",
+											"type": "text"
+										},
+										{
+											"key": "Custom1",
+											"value": "test_c1",
+											"type": "text"
+										},
+										{
+											"key": "Custom2",
+											"value": "test_c2",
+											"type": "text"
+										},
+										{
+											"key": "Custom3",
+											"value": "test_c3",
+											"type": "text"
+										},
+										{
+											"key": "Custom4",
+											"value": "test_c4",
+											"type": "text"
+										},
+										{
+											"key": "Custom5",
+											"value": "test_c5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload dictation for TS",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "see_dictation_audio_file",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "DictationId",
+											"value": "{{$guid}}",
+											"type": "text"
+										},
+										{
+											"key": "Status",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "Priority",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "Worktype",
+											"value": "Memo",
+											"type": "text"
+										},
+										{
+											"key": "CreationDateTime",
+											"value": "2021-09-24T13:50:40.000",
+											"type": "text"
+										},
+										{
+											"key": "Title",
+											"value": "Test dictation",
+											"type": "text"
+										},
+										{
+											"key": "Category",
+											"value": "test_cat",
+											"type": "text"
+										},
+										{
+											"key": "Comments",
+											"value": "test_comm",
+											"type": "text"
+										},
+										{
+											"key": "Department",
+											"value": "test_dep",
+											"type": "text"
+										},
+										{
+											"key": "Keyword",
+											"value": "test_kw",
+											"type": "text"
+										},
+										{
+											"key": "DPMBarcode",
+											"value": "test_bc",
+											"type": "text"
+										},
+										{
+											"key": "Custom1",
+											"value": "test_c1",
+											"type": "text"
+										},
+										{
+											"key": "Custom2",
+											"value": "test_c2",
+											"type": "text"
+										},
+										{
+											"key": "Custom3",
+											"value": "test_c3",
+											"type": "text"
+										},
+										{
+											"key": "Custom4",
+											"value": "test_c4",
+											"type": "text"
+										},
+										{
+											"key": "Custom5",
+											"value": "test_c5",
+											"type": "text"
+										},
+										{
+											"key": "NumberOfSpeakers",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload dictation for SR",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "see_dictation_audio_file",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "DictationId",
+											"value": "{{$guid}}",
+											"type": "text"
+										},
+										{
+											"key": "Status",
+											"value": "13",
+											"type": "text"
+										},
+										{
+											"key": "Priority",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "Worktype",
+											"value": "Memo",
+											"type": "text"
+										},
+										{
+											"key": "CreationDateTime",
+											"value": "2021-09-24T13:50:40.000",
+											"type": "text"
+										},
+										{
+											"key": "Title",
+											"value": "Test dictation",
+											"type": "text"
+										},
+										{
+											"key": "Category",
+											"value": "test_cat",
+											"type": "text"
+										},
+										{
+											"key": "Comments",
+											"value": "test_comm",
+											"type": "text"
+										},
+										{
+											"key": "Department",
+											"value": "test_dep",
+											"type": "text"
+										},
+										{
+											"key": "Keyword",
+											"value": "test_kw",
+											"type": "text"
+										},
+										{
+											"key": "DPMBarcode",
+											"value": "test_bc",
+											"type": "text"
+										},
+										{
+											"key": "Custom1",
+											"value": "test_c1",
+											"type": "text"
+										},
+										{
+											"key": "Custom2",
+											"value": "test_c2",
+											"type": "text"
+										},
+										{
+											"key": "Custom3",
+											"value": "test_c3",
+											"type": "text"
+										},
+										{
+											"key": "Custom4",
+											"value": "test_c4",
+											"type": "text"
+										},
+										{
+											"key": "Custom5",
+											"value": "test_c5",
+											"type": "text"
+										},
+										{
+											"key": "SELiveSpeechRecLanguageCode6Char",
+											"value": "eng-GBR",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get single dictation metadata",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations/2571ad0f-f8b0-483b-a25a-6494cebcde58",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations",
+										"2571ad0f-f8b0-483b-a25a-6494cebcde58"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get specific dictations metadata",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CRI\": \"{{$guid}}\",\r\n    \"dictationIds\": [\r\n        \"8576d35a-5335-46a8-99da-7bf6a7e74df4\",\r\n        \"9A631F7D-2735-481E-B187-CA5577540EEA\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/getdictationinfolist",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"getdictationinfolist"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all dictations metadata from folder",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations?isArchive=false",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations"
+									],
+									"query": [
+										{
+											"key": "isArchive",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download attachment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations/2571ad0f-f8b0-483b-a25a-6494cebcde58/attachment/download",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations",
+										"2571ad0f-f8b0-483b-a25a-6494cebcde58",
+										"attachment",
+										"download"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user settings",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/usersettings",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"usersettings"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{APP_DICT_BEARER_ACCESS_TOKEN}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "/app endpoints using 'x-sps-app-interface-authorization' header",
+					"item": [
+						{
+							"name": "Get user settings requests",
+							"item": [
+								{
+									"name": "SUCCESS; no Authorize, inherited 'x-sps-app-interface-authorization'",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/usersettings",
+											"host": [
+												"{{BASE_URL_WITH_PROTOCOL}}"
+											],
+											"path": [
+												"app",
+												"usersettings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "SUCCESS; bad explicit Authorize, inherited 'x-sps-app-interface-authorization'",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer ThisIsGarbageForTestingDoNotChangeIt",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/usersettings",
+											"host": [
+												"{{BASE_URL_WITH_PROTOCOL}}"
+											],
+											"path": [
+												"app",
+												"usersettings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FAIL; bad Authorize, bad explicit 'x-sps-app-interface-authorization'",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer ThisIsGarbageForTestingDoNotChangeIt",
+												"type": "text"
+											},
+											{
+												"key": "x-sps-app-interface-authorization",
+												"value": "Bearer BadBadToken",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/usersettings",
+											"host": [
+												"{{BASE_URL_WITH_PROTOCOL}}"
+											],
+											"path": [
+												"app",
+												"usersettings"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FAIL; bad Authorize, no 'x-sps-app-interface-authorization'",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer ThisIsGarbageForTestingDoNotChangeIt",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/usersettings",
+											"host": [
+												"{{BASE_URL_WITH_PROTOCOL}}"
+											],
+											"path": [
+												"app",
+												"usersettings"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Upload dictation (generic)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "see_dictation_audio_file",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "DictationId",
+											"value": "{{$guid}}",
+											"type": "text"
+										},
+										{
+											"key": "Status",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "Priority",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "Worktype",
+											"value": "Memo",
+											"type": "text"
+										},
+										{
+											"key": "CreationDateTime",
+											"value": "2021-09-24T13:50:40.000",
+											"type": "text"
+										},
+										{
+											"key": "Title",
+											"value": "Test dictation",
+											"type": "text"
+										},
+										{
+											"key": "Category",
+											"value": "test_cat",
+											"type": "text"
+										},
+										{
+											"key": "Comments",
+											"value": "test_comm",
+											"type": "text"
+										},
+										{
+											"key": "Department",
+											"value": "test_dep",
+											"type": "text"
+										},
+										{
+											"key": "Keyword",
+											"value": "test_kw",
+											"type": "text"
+										},
+										{
+											"key": "DPMBarcode",
+											"value": "test_bc",
+											"type": "text"
+										},
+										{
+											"key": "Custom1",
+											"value": "test_c1",
+											"type": "text"
+										},
+										{
+											"key": "Custom2",
+											"value": "test_c2",
+											"type": "text"
+										},
+										{
+											"key": "Custom3",
+											"value": "test_c3",
+											"type": "text"
+										},
+										{
+											"key": "Custom4",
+											"value": "test_c4",
+											"type": "text"
+										},
+										{
+											"key": "Custom5",
+											"value": "test_c5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload dictation for TS",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "see_dictation_audio_file",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "DictationId",
+											"value": "{{$guid}}",
+											"type": "text"
+										},
+										{
+											"key": "Status",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "Priority",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "Worktype",
+											"value": "Memo",
+											"type": "text"
+										},
+										{
+											"key": "CreationDateTime",
+											"value": "2021-09-24T13:50:40.000",
+											"type": "text"
+										},
+										{
+											"key": "Title",
+											"value": "Test dictation",
+											"type": "text"
+										},
+										{
+											"key": "Category",
+											"value": "test_cat",
+											"type": "text"
+										},
+										{
+											"key": "Comments",
+											"value": "test_comm",
+											"type": "text"
+										},
+										{
+											"key": "Department",
+											"value": "test_dep",
+											"type": "text"
+										},
+										{
+											"key": "Keyword",
+											"value": "test_kw",
+											"type": "text"
+										},
+										{
+											"key": "DPMBarcode",
+											"value": "test_bc",
+											"type": "text"
+										},
+										{
+											"key": "Custom1",
+											"value": "test_c1",
+											"type": "text"
+										},
+										{
+											"key": "Custom2",
+											"value": "test_c2",
+											"type": "text"
+										},
+										{
+											"key": "Custom3",
+											"value": "test_c3",
+											"type": "text"
+										},
+										{
+											"key": "Custom4",
+											"value": "test_c4",
+											"type": "text"
+										},
+										{
+											"key": "Custom5",
+											"value": "test_c5",
+											"type": "text"
+										},
+										{
+											"key": "NumberOfSpeakers",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload dictation for SR",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "see_dictation_audio_file",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "DictationId",
+											"value": "{{$guid}}",
+											"type": "text"
+										},
+										{
+											"key": "Status",
+											"value": "13",
+											"type": "text"
+										},
+										{
+											"key": "Priority",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "Worktype",
+											"value": "Memo",
+											"type": "text"
+										},
+										{
+											"key": "CreationDateTime",
+											"value": "2021-09-24T13:50:40.000",
+											"type": "text"
+										},
+										{
+											"key": "Title",
+											"value": "Test dictation",
+											"type": "text"
+										},
+										{
+											"key": "Category",
+											"value": "test_cat",
+											"type": "text"
+										},
+										{
+											"key": "Comments",
+											"value": "test_comm",
+											"type": "text"
+										},
+										{
+											"key": "Department",
+											"value": "test_dep",
+											"type": "text"
+										},
+										{
+											"key": "Keyword",
+											"value": "test_kw",
+											"type": "text"
+										},
+										{
+											"key": "DPMBarcode",
+											"value": "test_bc",
+											"type": "text"
+										},
+										{
+											"key": "Custom1",
+											"value": "test_c1",
+											"type": "text"
+										},
+										{
+											"key": "Custom2",
+											"value": "test_c2",
+											"type": "text"
+										},
+										{
+											"key": "Custom3",
+											"value": "test_c3",
+											"type": "text"
+										},
+										{
+											"key": "Custom4",
+											"value": "test_c4",
+											"type": "text"
+										},
+										{
+											"key": "Custom5",
+											"value": "test_c5",
+											"type": "text"
+										},
+										{
+											"key": "SELiveSpeechRecLanguageCode6Char",
+											"value": "eng-GBR",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get single dictation metadata",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations/2571ad0f-f8b0-483b-a25a-6494cebcde58",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations",
+										"2571ad0f-f8b0-483b-a25a-6494cebcde58"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get specific dictations metadata",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"CRI\": \"{{$guid}}\",\r\n    \"dictationIds\": [\r\n        \"8576d35a-5335-46a8-99da-7bf6a7e74df4\",\r\n        \"9A631F7D-2735-481E-B187-CA5577540EEA\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/getdictationinfolist",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"getdictationinfolist"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all dictations metadata from folder",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations?isArchive=false",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations"
+									],
+									"query": [
+										{
+											"key": "isArchive",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download attachment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL_WITH_PROTOCOL}}/app/dictations/2571ad0f-f8b0-483b-a25a-6494cebcde58/attachment/download",
+									"host": [
+										"{{BASE_URL_WITH_PROTOCOL}}"
+									],
+									"path": [
+										"app",
+										"dictations",
+										"2571ad0f-f8b0-483b-a25a-6494cebcde58",
+										"attachment",
+										"download"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "apikey",
+						"apikey": [
+							{
+								"key": "value",
+								"value": "Bearer {{APP_DICT_BEARER_ACCESS_TOKEN}}",
+								"type": "string"
+							},
+							{
+								"key": "key",
+								"value": "x-sps-app-interface-authorization",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "/masterdata endpoints",
+			"item": [
+				{
+					"name": "Insert master data into database",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CRI\": \"{{$guid}}\",\r\n    \"dataitem\": \r\n    {\r\n        \"ID\": \"992d5f1c-2968-458a-9698-b6f323674343\",\r\n        \"Label01\": \"data01\",\r\n        \"Label02\": \"data02\",\r\n        \"Label03\": \"data03\",\r\n        \"Label04\": \"data04\",\r\n        \"Label05\": \"data05\",\r\n        \"Label06\": \"data06\",\r\n        \"Label07\": \"data07\",\r\n        \"Label08\": \"data08\",\r\n        \"Label09\": \"data09\",\r\n        \"Int01\": \"1\",\r\n        \"Int02\": \"2\",\r\n        \"Int03\": \"3\",\r\n        \"Int04\": \"4\",\r\n        \"Int05\": \"5\",\r\n        \"Datetime01\": \"2021-11-04 15:35:30\",\r\n        \"Datetime02\": \"2019-03-16 11:24:49\",\r\n        \"Datetime03\": \"2000-01-01 06:11:17\",\r\n        \"Datetime04\": \"1995-05-31 17:58:03\",\r\n        \"Datetime05\": \"1776-07-04 01:11:09\"\r\n    }\r\n} \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL_WITH_PROTOCOL}}/masterdata/dataitems",
+							"host": [
+								"{{BASE_URL_WITH_PROTOCOL}}"
+							],
+							"path": [
+								"masterdata",
+								"dataitems"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "{{MASTERDATA_API_KEY}}",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "x-sps-api-key",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "/dms endpoints",
+			"item": [
+				{
+					"name": "Retrieve all author users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL_WITH_PROTOCOL}}/dms/users",
+							"host": [
+								"{{BASE_URL_WITH_PROTOCOL}}"
+							],
+							"path": [
+								"dms",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get info for all dictations of an author",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL_WITH_PROTOCOL}}/dms/dictations/user01",
+							"host": [
+								"{{BASE_URL_WITH_PROTOCOL}}"
+							],
+							"path": [
+								"dms",
+								"dictations",
+								"user01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get info for all dictations of all authors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL_WITH_PROTOCOL}}/dms/dictations/",
+							"host": [
+								"{{BASE_URL_WITH_PROTOCOL}}"
+							],
+							"path": [
+								"dms",
+								"dictations",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download attachment of one dictation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL_WITH_PROTOCOL}}/dms/dictations/user01/3D8A776F-86FF-4050-96EA1C325DBF8834/attachment",
+							"host": [
+								"{{BASE_URL_WITH_PROTOCOL}}"
+							],
+							"path": [
+								"dms",
+								"dictations",
+								"user01",
+								"3D8A776F-86FF-4050-96EA1C325DBF8834",
+								"attachment"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "value",
+						"value": "{{DMS_API_KEY}}",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "x-sps-api-key",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "/test endpoints",
+			"item": [
+				{
+					"name": "Test configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL_WITH_PROTOCOL}}/test/testconfig",
+							"host": [
+								"{{BASE_URL_WITH_PROTOCOL}}"
+							],
+							"path": [
+								"test",
+								"testconfig"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL_WITH_PROTOCOL",
+			"value": "http://localhost/SEEAppInterface"
+		},
+		{
+			"key": "APP_USERNAME",
+			"value": "my-username"
+		},
+		{
+			"key": "APP_PASSWORD",
+			"value": "my-password"
+		},
+		{
+			"key": "APP_DICT_BEARER_ACCESS_TOKEN",
+			"value": "my-app-dict-access-token"
+		},
+		{
+			"key": "MASTERDATA_API_KEY",
+			"value": "my-masterdata-api-key"
+		},
+		{
+			"key": "DMS_API_KEY",
+			"value": "my-dms-api-key"
+		}
+	]
+}
