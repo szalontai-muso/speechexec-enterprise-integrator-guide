@@ -9,13 +9,18 @@ nav_order: 20
 
 # Query an existing masterdata entry
 
-## Prerequisites
+## Remarks
 
-This functionality is not part of the Enterprise App Interface. You need to install the Enterprise Configuration service and connect to that service to use it.
+This functionality is **NOT** directly offered by `Enterprise App Interface` but another component called `Enterprise Configuration service`. It is, however, part of the 'masterdata' workflow. You need to install the `Enterprise Configuration service` and connect to that service to perform the procedure described below.
+Querying an existing masterdata entry is usually done by Enterprise Dictate.
+
+## Authentication
+Unlike the `masterdata` endpoints of `Enterprise App Interface` - which are designed for server-to-server communication - the `GET masterdata/dataitems` endpoint of `Enterprise Configuration service` described below **is** called by end-user applications, usually Enterprise Dictate. Requests coming from Enterprise Dictate use Windows Authentication, therefore any `GET masterdata/dataitems` request must also use the Windows Authentication (also known as NTLM) authentication type.
+
 
 ## Procedure
 
-An existing master data record can be queried from the master data DB using the `GET masterdata/dataitems/{id}` endpoint. This endpoint requires an `id` query parameter which defines the master data record's ID to look for.
+An existing master data record can be queried from the master data SQL database  using the `GET masterdata/dataitems/{id}` endpoint. This endpoint requires an `id` query parameter which defines the master data record's ID to look for.
 
 The call returns with the following JSON response:
 
