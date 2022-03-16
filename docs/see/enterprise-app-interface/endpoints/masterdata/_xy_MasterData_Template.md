@@ -11,6 +11,9 @@ nav_order: 10000
 
 ## Prerequisites (IF NEEDED)
 
+
+[You can find more information here](./10_MasterDataAuthentication.md)
+
 ## Procedure
 
 ## Example
