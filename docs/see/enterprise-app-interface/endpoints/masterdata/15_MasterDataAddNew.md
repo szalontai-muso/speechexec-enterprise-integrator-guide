@@ -14,6 +14,12 @@ nav_order: 15
 HTTP request authentication must be set up properly.
 You can find more information [here](./10_MasterDataAuthentication.md).
 
+## Overview
+
+![/masterdata workflow overview](static/images/diagrams/EAI_MasterData_NewDataInsert.png)
+
+*The table must be named strictly as **MasterDataItemsTableForSpeechExecEnterprise**.
+
 ## Procedure
 
 A new master data record can be inserted to the master data DB using the `POST /masterdata/dataitems` endpoint. An `InsertMasterDataRequest` request object must be passed to this endpoint when called. This request object must have the following JSON structure:

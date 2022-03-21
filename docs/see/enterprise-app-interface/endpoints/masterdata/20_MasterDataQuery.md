@@ -17,6 +17,11 @@ Querying an existing masterdata entry is usually done by Enterprise Dictate.
 ## Authentication
 Unlike the `masterdata` endpoints of `Enterprise App Interface` - which are designed for server-to-server communication - the `GET masterdata/dataitems` endpoint of `Enterprise Configuration service` described below **is** called by end-user applications, usually Enterprise Dictate. Requests coming from Enterprise Dictate use Windows Authentication, therefore any `GET masterdata/dataitems` request must also use the Windows Authentication (also known as NTLM) authentication type.
 
+## Overview
+
+![/masterdata workflow overview](static/images/diagrams/EAI_MasterData_QueryExistingData.png)
+
+*The view/table must be named as **MasterDataItemsForSpeechExecEnterprise**
 
 ## Procedure
 
