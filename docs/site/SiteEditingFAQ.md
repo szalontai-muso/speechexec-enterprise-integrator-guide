@@ -9,7 +9,7 @@ has_children: false
 {: .no_toc }
 
 
-## Table of contents
+## Contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -76,7 +76,7 @@ Explanation:
 
 More information:
 
-[https://pmarsceill.github.io/just-the-docs/docs/navigation-structure/#in-page-navigation-with-table-of-contents](https://pmarsceill.github.io/just-the-docs/docs/navigation-structure/#in-page-navigation-with-table-of-contents)
+[https://just-the-docs.github.io/just-the-docs/docs/navigation-structure/#in-page-navigation-with-table-of-contents](https://just-the-docs.github.io/just-the-docs/docs/navigation-structure/#in-page-navigation-with-table-of-contents)
 
 ## Source code examples
 Enclose source code examples in triple-backtick fences:
@@ -86,7 +86,7 @@ generic source code example
 ```
 
 ``` csharp
-var cSharpString = "This is a C example with color-coding";
+var cSharpString = "This is a C# example with color-coding";
 ```
 
 ``` xml

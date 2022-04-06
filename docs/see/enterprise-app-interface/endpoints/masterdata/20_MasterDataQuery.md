@@ -8,6 +8,13 @@ nav_order: 20
 ---
 
 # Query an existing masterdata entry
+{: .no_toc }
+
+## Contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
 
 ## Remarks
 
@@ -81,7 +88,7 @@ The call always returns with `HTTP 200-OK`. The `Status` field in the response b
 
 ## Examples
 
-### 1. The call returns with `Status: ERROR_NoDataFoundForID` due to non-existing master data record
+### Return with `Status: ERROR_NoDataFoundForID` due to non-existing master data record
 
 Request:
 
@@ -99,7 +106,7 @@ Response:
 }
 ```
 
-### 2. The call returns with `Status: ERROR_DataNotReadable` due to unreachable SQL server or DB address
+### Return with `Status: ERROR_DataNotReadable` due to unreachable SQL server or DB address
 
 Request:
 
@@ -117,7 +124,7 @@ Response:
 }
 ```
 
-### 3. The call returns with `Status: OK` success response
+### Return with `Status: OK` success response
 
 Request:
 

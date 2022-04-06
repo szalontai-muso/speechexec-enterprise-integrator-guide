@@ -8,6 +8,13 @@ nav_order: 15
 ---
 
 # Adding a new masterdata entry
+{: .no_toc }
+
+## Contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
 
 ## Prerequisites
 
@@ -71,7 +78,11 @@ In all error cases, the exact error reason can be found in the response body, in
 
 ## Examples
 
-### 1. The call returns with `HTTP 400-BadRequest` due to invalid request body
+### Test application
+A test application can be found here:
+[https://github.com/speechprocessing/speechexec-enterprise-integrator-guide/tree/main/testapps/EnterpriseAppInterface/CSharp/MasterDataAPITest](https://github.com/speechprocessing/speechexec-enterprise-integrator-guide/tree/main/testapps/EnterpriseAppInterface/CSharp/MasterDataAPITest){:target="_blank"}
+
+### Return with `HTTP 400-BadRequest` due to invalid request body
 
 Request:
 
@@ -97,7 +108,7 @@ Response:
 }
 ```
 
-### 2. The call returns with `HTTP 409-Conflict` due to primary key (ID) violation
+### Return with `HTTP 409-Conflict` due to primary key (ID) violation
 
 Request:
 
@@ -124,7 +135,7 @@ Response:
 }
 ```
 
-### 3. The call returns with `HTTP 201-Created` success response
+### Return with `HTTP 201-Created` success response
 
 Request:
 
