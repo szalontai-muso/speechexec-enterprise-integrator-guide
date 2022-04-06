@@ -86,7 +86,7 @@ generic source code example
 ```
 
 ``` csharp
-var cSharpString = "This is a C example with color-coding";
+var cSharpString = "This is a C# example with color-coding";
 ```
 
 ``` xml
