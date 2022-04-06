@@ -88,7 +88,7 @@ The call always returns with `HTTP 200-OK`. The `Status` field in the response b
 
 ## Examples
 
-### Returns with `Status: ERROR_NoDataFoundForID` due to non-existing master data record
+### Return with `Status: ERROR_NoDataFoundForID` due to non-existing master data record
 
 Request:
 
@@ -106,7 +106,7 @@ Response:
 }
 ```
 
-### Returns with `Status: ERROR_DataNotReadable` due to unreachable SQL server or DB address
+### Return with `Status: ERROR_DataNotReadable` due to unreachable SQL server or DB address
 
 Request:
 
@@ -124,7 +124,7 @@ Response:
 }
 ```
 
-### Returns with `Status: OK` success response
+### Return with `Status: OK` success response
 
 Request:
 
