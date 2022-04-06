@@ -9,7 +9,7 @@ has_children: false
 {: .no_toc }
 
 
-## Table of contents
+## Contents
 {: .no_toc .text-delta }
 
 1. TOC
