@@ -8,6 +8,13 @@ nav_order: 15
 ---
 
 # Adding a new masterdata entry
+{: .no_toc }
+
+Contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
 
 ## Prerequisites
 
