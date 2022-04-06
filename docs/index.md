@@ -19,4 +19,5 @@ Enterprise App Interface offers multiple integration end-point groups. These end
 
 ## Test applications
 Test applications demonstrating the main use-cases and technical possibilites can be found here:
-[https://github.com/speechprocessing/speechexec-enterprise-integrator-guide/tree/main/testapps](https://github.com/speechprocessing/speechexec-enterprise-integrator-guide/tree/main/testapps)
+ 
+[https://github.com/speechprocessing/speechexec-enterprise-integrator-guide/tree/main/testapps/EnterpriseAppInterface](https://github.com/speechprocessing/speechexec-enterprise-integrator-guide/tree/main/testapps/EnterpriseAppInterface){:target="_blank"}
