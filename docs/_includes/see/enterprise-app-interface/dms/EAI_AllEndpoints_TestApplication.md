@@ -1,0 +1,2 @@
+A test application can be found here:
+[https://github.com/speechprocessing/speechexec-enterprise-integrator-guide/tree/main/testapps/EnterpriseAppInterface/CSharp/DMSAPITest](https://github.com/speechprocessing/speechexec-enterprise-integrator-guide/tree/main/testapps/EnterpriseAppInterface/CSharp/DMSAPITest){:target="_blank"}

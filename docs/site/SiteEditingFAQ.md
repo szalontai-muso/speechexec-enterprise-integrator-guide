@@ -76,8 +76,7 @@ Explanation:
 
 More information:
 
-[https://just-the-docs.github.io/just-the-docs/docs/navigation-structure/#in-page-navigation-with-table-of-contents](https://just-the-docs.github.io/just-the-docs/docs/navigation-structure/#in-page-navigation-with-table-of-contents)
-
+<https://just-the-docs.github.io/just-the-docs/docs/navigation-structure/#in-page-navigation-with-table-of-contents>
 ## Source code examples
 Enclose source code examples in triple-backtick fences:
 ```` markdown
@@ -99,3 +98,38 @@ var cSharpString = "This is a C# example with color-coding";
 </root_node>
 ```
 ````
+
+
+## Include common content into other files
+Re-using common file content and re-using them in multiple target files is possible in two ways:
+
+1.
+ {% raw %} 
+ {% include FileDirectlyInIncludes.md %}
+ {% endraw %}
+
+ 2.
+  {% raw %} 
+  {% include_relative FileToIncludeRelativeToTargetFile.md %}
+  {% endraw %}
+
+### Including files from the site level `_includes` folder
+On the site level, common files stored in the `_includes` folder can be included into other files using the `include` Liquid tag:
+```
+{% raw %}
+{% include FileDirectlyInIncludes.md %}
+{% endraw %}
+```
+
+The location of the `_includes` folder is pre-defined by Jekyll: must be in the root folder of the documentation source. In our case:<br>
+`docs\_includes`
+
+### Including files relative to target file
+You can choose to include file fragments *relative* to the current file by using the `include_relative` tag:
+```
+{% raw %}
+{% include_relative MySubDir/FileFromMySubDir.html %}
+{% endraw %}
+```
+
+Note that you cannot use the `../` syntax to specify an include location that refers to a higher-level directory.

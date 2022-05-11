@@ -8,13 +8,7 @@ nav_order: 20
 ---
 
 # Query an existing masterdata entry
-{: .no_toc }
-
-## Contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
+{% include see/enterprise-app-interface/EAI_AllEndpoints_TOC.md %}
 
 ## Remarks
 

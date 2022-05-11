@@ -1,17 +1,21 @@
-﻿namespace MasterDataAPITest;
+﻿using System;
+using System.Threading.Tasks;
 
-internal class Program
+namespace MasterDataAPITest
 {
-    static async Task Main(string[] args)
+    internal class Program
     {
-        var masterDataConnector = new MasterDataConnector();
+        static async Task Main(string[] args)
+        {
+            var masterDataConnector = new MasterDataConnector();
 
-        Console.WriteLine("Inserting new MasterData record...");
-        await masterDataConnector.InsertNewMasterDataRecordInTask();
-        Console.WriteLine("Done.");
+            Console.WriteLine("Inserting new MasterData record...");
+            await masterDataConnector.InsertNewMasterDataRecordInTask();
+            Console.WriteLine("Done.");
 
-        Console.WriteLine("Querying MasterData record...");
-        var result = await masterDataConnector.QueryMasterDataRecordInTask();
-        Console.WriteLine("Done.");
+            Console.WriteLine("Querying MasterData record...");
+            var result = await masterDataConnector.QueryMasterDataRecordInTask();
+            Console.WriteLine("Done.");
+        }
     }
 }

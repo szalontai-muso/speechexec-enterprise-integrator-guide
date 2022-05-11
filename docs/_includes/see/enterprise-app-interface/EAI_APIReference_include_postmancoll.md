@@ -1,0 +1,1 @@
+A Postman collection containing sample requests is [also available here.](../../static/documents/Enterprise%20App%20Interface%20service%20API%20v8.0.4.postman_collection.json)

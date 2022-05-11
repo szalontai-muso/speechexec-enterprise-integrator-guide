@@ -59,7 +59,7 @@ The relevant settings in `web.config`:
 
 
 ## Request authentication settings
-Every HTTP request to the `/masterdata` endpoints from an integrator application must be authenticated. Authentication is realized using 'API keys'. An integrator application must specify a valid 'API key' in the custom `x-sps-api-key` HTTP  header of every HTTP request.
+Every HTTP request sent to the `/masterdata` endpoints from an integrator application must be authenticated. Authentication is realized using 'API keys'. An integrator application must specify a valid 'API key' in the custom `x-sps-api-key` HTTP  header of every HTTP request.
 
 The 'API key' values accepted by the `/masterdata` endpoints are stored in service setting:
 ```
@@ -73,7 +73,7 @@ The value of this setting is:
 ### Example
 ``` xml
 <add key="API.MasterData.AllowedAPIKeysPipeSeparated" 
-     value="KeyA_GUID1|KeyB_GUID2" />
+     value="MasterDataApiKeyA_GUID1|MasterDataApiKeyB_GUID2" />
 ```
 
 

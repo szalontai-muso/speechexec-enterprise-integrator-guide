@@ -8,18 +8,14 @@ nav_order: 15
 ---
 
 # Adding a new masterdata entry
-{: .no_toc }
-
-## Contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
+{% include see/enterprise-app-interface/EAI_AllEndpoints_TOC.md %}
 
 ## Prerequisites
 
 HTTP request authentication must be set up properly.
 You can find more information [here](./10_MasterDataAuthentication.md).
+
+The SQL server database must have a table with name `MasterDataItemsTableForSpeechExecEnterprise`. Configuring the database connection settings is the responsibility of the service administrator. See [service settings](./05_MasterDataServiceSettings.md) for more information.
 
 ## Overview
 
@@ -60,12 +56,16 @@ A new master data record can be inserted to the master data DB using the `POST /
 }
 ```
 
+{% include see/enterprise-app-interface/EAI_AllEndpoints_CRI.md %}
+
 The call returns with `HTTP 400-BadRequest` in the following cases:
 
 - The request is null
 - The dataitem field is null
 - The ID field is null or empty
 - Any of the Datetime* fields has invalid data. These fields must specified in the following format: `yyyy-MM-dd HH:mm:ss`
+
+The call returns with `HTTP 401-Unauthorized` if the authentication prerequisites are not fulfilled.
 
 The call returns with `HTTP 409-Conflict` in the following cases:
 
@@ -87,6 +87,13 @@ A test application can be found here:
 Request:
 
 POST https://my.service.url/SEEAppInterface/masterdata/dataitems
+
+Headers:
+```
+x-sps-api-key: "<api_key_supported_by_server>"
+```
+
+Body:
 ``` json
 {
     "CRI": "2CBA31B2-CCCA-40A3-BEA8-771F25A748F6",
@@ -108,11 +115,39 @@ Response:
 }
 ```
 
+### Return with `HTTP 401-Unauthorized` error response due to not matching API key
+
+Request:
+
+POST https://my.service.url/SEEAppInterface/masterdata/dataitems
+
+Headers:
+```
+x-sps-api-key: ""
+```
+
+Response:
+
+401 Unauthorized
+``` json
+{
+    "CRI": "2CBA31B2-CCCA-40A3-BEA8-771F25A748F6",
+    "FailureCode": "Invalid_api_key"
+}
+```
+
 ### Return with `HTTP 409-Conflict` due to primary key (ID) violation
 
 Request:
 
 POST https://my.service.url/SEEAppInterface/masterdata/dataitems
+
+Headers:
+```
+x-sps-api-key: "<api_key_supported_by_server>"
+```
+
+Body:
 ``` json
 {
     "CRI": "2CBA31B2-CCCA-40A3-BEA8-771F25A748F6",

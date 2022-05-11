@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MobileAPITest.Data;
-
-internal class GetDictationsResponse
+namespace MobileAPITest.Data
 {
-	public Guid CRI { get; set; }
-	public GetDictationsData[]? data { get; set; }
+	internal class GetDictationsResponse
+	{
+		public Guid CRI { get; set; }
+		public GetDictationsData[]? data { get; set; }
+	}
 }
