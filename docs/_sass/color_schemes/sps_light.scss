@@ -1,0 +1,12 @@
+
+$content-width: 1200px;
+
+$nav-width: 400px;
+$nav-width-md: 400px;
+
+$media-queries: (
+  xs: 320px,
+  sm: 500px,
+  md: $content-width,
+  lg: $content-width + $nav-width
+);
