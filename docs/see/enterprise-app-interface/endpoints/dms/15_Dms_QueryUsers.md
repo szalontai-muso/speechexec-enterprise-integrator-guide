@@ -23,11 +23,7 @@ You can find more information [here](./10_DmsAuthentication.md).
 
 The list of `SpeechExec Enterprise` author users can be queried using the `GET /dms/users` endpoint. This endpoint does not require any parameters.
 
-The query first collects those users who satisfy the following criterias:
-- those direct members of `SEEAllowedAuthMobile` AD group who are also direct members of any sub-group in `SEEAllowedAuth` AD group
-- all direct members of those sub-groups in `SEEAllowedAuthMobile` AD group, which has a matching named sub-group in the `SEEAllowedAuth` AD group
-
-Then all these users are validated if they are members of the `SpeechExec Enterprise` subsystem and only the valid users are involved in the result.
+All the users are validated if they are members of the `SpeechExec Enterprise` subsystem and only the valid users are involved in the result.
 
 The call returns with the following JSON response:
 
